@@ -4,7 +4,7 @@ from constants import UPSTREAM_FLOW_NAME, CICD_NAMESPACE
 
 def fetch_default_run_id():
     """
-    Return the run id of the latest successful upstream flow's deployment_candidate.
+    Return the run id of the latest successful 's deployment_candidate.
     In practice, you will want far more rigorous conditions. 
     For example, you might want to smoke test the model rather than just assert is not None.
     """
