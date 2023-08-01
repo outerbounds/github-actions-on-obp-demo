@@ -14,7 +14,7 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: <YOUR SERVICE PRINCIPAL ROLE ARN>
+        role-to-assume: arn:aws:iam::436283604051:role/OuterboundsServicePrincipalsRole 
         aws-region: us-west-2
     - run: aws sts get-caller-identity
     - name: Set up Python 3.x
@@ -28,5 +28,5 @@ jobs:
       env:
         METAFLOW_HOME: /tmp/.metaflowconfig
       run: |
-        <YOUR OB CONFIGURE COMMAND FOR SERVICE PRINCIPALS>
+        outerbounds configure awssm-arn:eJxszc2KgzAUxfF3ydoLZnL9mOwykhEXo0MUhlmFmCbShVqMxUXpuxepdNXlgT/ndyPir9WtLJTsWv0jalFKpZUsq6YmnFwDOBNWoCR6Gz63FmqPzTJxswUenF3cGkYzmcEt/PXBM4oJSz+QIcOj4nN/gdHbefLnAdLPnKG3FHLXI+DJMTAs9dBTlvvE+jjOkESk+dJFU39Xpe7+f+UubwEOFQ6W3B8BAAD//95nQ6k=
         python evaluate_new_model_flow.py run --with card
