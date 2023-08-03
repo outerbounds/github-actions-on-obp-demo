@@ -21,7 +21,7 @@ class EvaluateNewModel(FlowSpec):
     def start(self):
         "Train and evaluate a model defined in my_data_science_module.py."
         
-        # Import my organization's custom modules.
+        # Import my organization's custom .
         from my_data_science_module import MyDataLoader, MyModel
 
         # Load some data.
@@ -30,7 +30,7 @@ class EvaluateNewModel(FlowSpec):
         # In practice this may return a tabular dataframe or a DataLoader object for images or text.
 
         # Simulate scores measured on your model's performance.
-        self.model = MyModel() # When this flow passes your CI/CD criteria, this artifact will be used in production to produce predictions.
+        self.model = MyModel() # When this flow passes your CI/CD criteria, this artifacin production to produce predictions.
         self.eval_metrics = self.model.score(data=self.train_data)
         # In this toy example, the "model evaluation" will just add 1 to the "self.train_data" integer.
 
