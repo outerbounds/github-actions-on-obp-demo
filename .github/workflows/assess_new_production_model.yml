@@ -1,32 +1,32 @@
 name: Deploy new production model
 on:
   push:
-    branches: ['main']
+
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    name: Evaluate model and deploy to production if successful
+  helloworld:
     permissions:
       id-token: write
       contents: read
+
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: <YOUR SERVICE PRINCIPAL ROLE ARN>
-        aws-region: us-west-2
-    - run: aws sts get-caller-identity
-    - name: Set up Python 3.x
-      uses: actions/setup-python@v1
-      with:
-        python-version: '3.10'
-    - name: Install Outerbounds
-      run: |
-        python3 -m pip install --user outerbounds
-    - name: Test flow
-      env:
-        METAFLOW_HOME: /tmp/.metaflowconfig
-      run: |
-        <YOUR OB CONFIGURE COMMAND FOR SERVICE PRINCIPALS>
-        python evaluate_new_model_flow.py run --with card
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Install and Configure Outerbounds
+        run: |-
+          pip install -U outerbounds && \
+          outerbounds service-principal-configure \
+          --name <YOUR-SERVICE-PRINCIPAL-NAME> \
+          --deployment-domain <YOUR-OUTERBOUNDS-DEPLOYMENT-NAME> \
+          --perimeter <YOUR-OUTERBOUNDS-PERIMETER-NAME> \
+          --github-actions
+
+      - name: Run helloworld flow
+        run: |-
+          python evaluate_new_model_flow.py run --with card
