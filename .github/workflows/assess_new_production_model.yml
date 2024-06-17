@@ -22,9 +22,9 @@ jobs:
         run: |-
           pip install -U outerbounds && \
           outerbounds service-principal-configure \
-          --name <YOUR-SERVICE-PRINCIPAL-NAME> \
-          --deployment-domain <YOUR-OUTERBOUNDS-DEPLOYMENT-NAME> \
-          --perimeter <YOUR-OUTERBOUNDS-PERIMETER-NAME> \
+          --name gha-ob-obp \
+          --deployment-domain dev-latest.outerbounds.xyz \
+          --perimeter default \
           --github-actions
 
       - name: Run helloworld flow
