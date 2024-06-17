@@ -27,6 +27,6 @@ jobs:
           --perimeter default \
           --github-actions
 
-      - name: Run helloworld flow
+      - name: Run Evaluate New Model In GHA
         run: |-
           python evaluate_new_model_flow.py run --with card
